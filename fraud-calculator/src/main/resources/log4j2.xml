@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+	<Properties>
+		<Property name="log-path">C:/tmp/logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="RollingFile"
+			fileName="${log-path}/fraud-calculator.log"
+			filePattern="${log-path}/fraud-calculator-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>%-5level %d{dd/MMM/yyyy HH:mm:ss,SSS} - [%c{1}]: %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="20 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" />
+		</RollingFile>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="root" level="debug" additivity="false">
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="Console" />
+		</Logger>
+	</Loggers>
+</Configuration>
